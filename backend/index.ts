@@ -1,6 +1,7 @@
 import { createExpressEndpoints, initServer } from "@ts-rest/express";
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 import { apiContract } from "./src/contract";
 
 // 模擬資料庫的資料
@@ -10,6 +11,7 @@ const users = [
 ];
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
