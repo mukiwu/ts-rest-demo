@@ -12,20 +12,22 @@ const App: React.FC = () => {
   const fetchUser = async (id: string) => {
     try {
       const response = await api.getUser({ params: { id } });
-      console.log("response", response);
       if (response.status === 200) {
         setUser(response.body);
         setError(null);
-      } else {
-        console.log(response);
-        setError(response.body.message);
-        setUser(null);
       }
     } catch (err) {
       console.log(err);
       setError("Failed to fetch user");
       setUser(null);
     }
+  };
+
+  const fetchUser2 = async (id: string) => {
+    fetch(`https://554vqy-3000.csb.app/user/${id}`)
+      .then((res) => res.json())
+      .then((data) => console.log("data", data))
+      .catch((error) => console.log("err", error));
   };
 
   return (
