@@ -4,6 +4,15 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import { apiContract } from "./src/contract";
 
+import { generateOpenApi } from "@ts-rest/open-api";
+
+const openApiDocument = generateOpenApi(apiContract, {
+  info: {
+    title: "Posts API",
+    version: "1.0.0",
+  },
+});
+
 // 模擬資料庫的資料
 const users = [
   { id: "1", name: "MUKI", age: 18 },
@@ -34,6 +43,10 @@ const handlers = {
 
 // 連結 API 合約與 Express 的端點
 createExpressEndpoints(apiContract, handlers, app);
+
+app.get("/openapi.json", (req, res) => {
+  res.json(openApiDocument);
+});
 
 // 啟動伺服器
 app.listen(3000, () => {

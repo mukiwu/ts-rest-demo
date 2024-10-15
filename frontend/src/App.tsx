@@ -23,17 +23,11 @@ const App: React.FC = () => {
     }
   };
 
-  const fetchUser2 = async (id: string) => {
-    fetch(`https://554vqy-3000.csb.app/user/${id}`)
-      .then((res) => res.json())
-      .then((data) => console.log("data", data))
-      .catch((error) => console.log("err", error));
-  };
-
   return (
     <div>
       <button onClick={() => fetchUser("1")}>Fetch User 1</button>
       <button onClick={() => fetchUser("2")}>Fetch User 2</button>
+      <button onClick={() => fetchUser("3")}>Fetch User 3</button>
       {user && (
         <div>
           <h2>User Info</h2>
